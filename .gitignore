@@ -1,0 +1,5 @@
+bin/
+obj/
+node_modules/
+helloapp/app/*.js
+helloapp/app/*.js.map
