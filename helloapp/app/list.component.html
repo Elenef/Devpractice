@@ -1,0 +1,24 @@
+<div class = "form">  
+   
+
+
+<input type="text" class="form-control" placeholder="Text input" (keyup)="onKey($event)"  cols="50" rows="10">
+
+<button  class="btn btn-default search" type="submit" name="submit"  [routerLink]="['/details']" >Новый отзыв</button>
+
+    <div class="panl">
+        <br/>
+            <ul class="list">
+                <li *ngFor="let review of reviews" >
+                    <p class="date">{{review?.created}} {{ review?.name}}  </p>
+                    <p class="text">{{review?.comment}} </p>
+                </li>
+                <br/>
+            </ul>
+        </div>
+
+
+
+</div>
+
+ 

@@ -7,6 +7,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using WebApplication1.Models;
+using Microsoft.EntityFrameworkCore;
+using WebApplication1.Services;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication1
 {
@@ -34,10 +39,25 @@ namespace WebApplication1
         // This method gets called by the runtime. Use this method to add services to the container
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            services.AddApplicationInsightsTelemetry(Configuration);
+
+            // получаем строку подключения из файла конфигурации
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            // добавляем контекст Context в качестве сервиса в приложение
+            services.AddDbContext<ReviewContext>(options =>
+                options.UseSqlServer(connection));
+            services.AddTransient<ReviewService>();
+            services.AddCors(options => options.AddPolicy("AllowAll", p => p
+               .AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+               .AllowCredentials()));
 
             services.AddMvc();
+
+            services.Configure<MvcOptions>(opt =>
+            {
+                opt.Filters.Add(new CorsAuthorizationFilterFactory("AllowAll"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
@@ -46,10 +66,11 @@ namespace WebApplication1
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseApplicationInsightsRequestTelemetry();
 
-            app.UseApplicationInsightsExceptionTelemetry();
+            //app.UseApplicationInsightsRequestTelemetry();
 
+            //app.UseApplicationInsightsExceptionTelemetry();
+           
             app.UseMvc();
         }
     }

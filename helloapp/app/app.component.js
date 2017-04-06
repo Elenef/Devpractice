@@ -11,25 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_service_1 = require('./http.service');
 var AppComponent = (function () {
-    function AppComponent(httpService) {
-        this.httpService = httpService;
+    function AppComponent() {
     }
-    AppComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.httpService.getGreeting()
-            .subscribe(function (data) { return _this.greeting = data; });
-    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "<div>{{greeting}}</div>",
-            /* template: `<div><p>Имя пользователя: {{greeting?.uid}}</p>
-                             <p>Имя пользователя: {{greeting?.first_name}}</p>
-                             <p>Имя пользователя: {{greeting?.last_name}}</p>
-                             </div>`,*/
-            providers: [http_service_1.HttpService]
+            template: "<div>    \n                  \n                    <router-outlet></router-outlet>\n               </div>                   \n               ",
+            providers: [http_service_1.ReviewService]
         }), 
-        __metadata('design:paramtypes', [http_service_1.HttpService])
+        __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;
 }());

@@ -1,0 +1,35 @@
+form{
+    float: left;
+}
+.form{
+    text-align: right;
+    width: 303px;
+    margin-bottom: 5px;
+}
+label:first-child{
+    float: left;
+}
+
+
+h1{
+    font: 1.2em 'PT Sans', Arial, Helvetica;
+  
+}
+
+.body{
+    background-image: url(app/Rose.jpg);
+    margin-top: -20px;
+    padding-left: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+
+.btn{
+    background-color: white;
+}
+
+label{
+
+    font-weight: normal;
+}

@@ -1,0 +1,29 @@
+
+<div class="body">
+
+<h1>{{greeting?.text}}! Оставь свои пожелания о нашем ресторане здесь: </h1>
+
+
+<form (submit)="submit(review)"  >
+            <div class="form">
+                <label for="name">Как вас зовут?*</label><br/>
+                <input class="form-control" required="" placeholder="Ваше имя" type="text" id="name" [(ngModel)]="review.name" name= "name"> 
+            </div>
+            
+            
+                        
+            <div class="form">
+                <label for="name">Что вы о нас думаете?*</label><br/>
+                <textarea  class="form-control" required="" placeholder="Напишите отзыв о нас"  name="comment" [(ngModel)]="review.comment" cols="40" rows="10"></textarea>
+            </div>
+            
+          
+             <div class="form" >
+                <input  class="btn btn-default search" type="submit" name="submit" value="Послать отзыв" />
+                <input   class="btn btn-default search" type="reset" name="reset" value="Очистить форму"/>
+            </div>
+			
+</form>
+
+</div>
+
